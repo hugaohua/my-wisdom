@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			background-color: lightgray;
+		}
+		.box{
+			width: 500px;
+			height: 300px;
+			margin: 150px auto 0px;
+			background-color: white;
+			position: relative;
+			font-size: 14px;
+			font-weight: 700;
+		}
+		.btn{
+			width: 80px;
+			height: 50px;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+		.wisdom{
+			height: 150px;
+			padding: 10px 20px 0;
+		}
+		.writer{
+			height: 50px;
+			text-align: right;
+			padding-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="wisdom">
+			但行好事，莫问前程！
+		</div>
+		<div class="writer">胡高华</div>
+		<div class="share">
+			<button class="btn">next</button>
+		</div>
+	</div>
+	<script src='./jquery.min.js'></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.btn').on('click',function(){
+				
+					$.ajax({
+			type: 'get',
+			url: 'http://apis.baidu.com/txapi/dictum/dictum',
+			headers: {apikey: 'e3472c1a6db4ad3ff28b1c3cfd177975'},
+			success:function(info){
+				console.log(info);
+				$('.wisdom').html(info.newslist[0].content);
+				$('.writer').html(info.newslist[0].mrname);
+			}
+		});
+			});
+		});
+		// $(document).ready(function(){})
+	</script>
+</body>
+</html>
